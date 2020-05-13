@@ -1,0 +1,8 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority-class
+value: 1200000
+preemptionPolicy: Never
+globalDefault: false
+description: "This priority class is for nodejs deployment pods"

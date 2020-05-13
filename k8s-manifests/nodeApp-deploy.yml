@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-deployment
+  labels:
+    app: nodeJs
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nodeJs
+  template:
+    metadata:
+      labels:
+        app: nodeJs
+    spec:
+      containers:
+      - name: hello-world-app
+        # image: pravarag/nodejs-test:latest
+        image: 331286842888.dkr.ecr.us-east-1.amazonaws.com/nodejs-test:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi 
+          requests:
+            cpu: 5m
+            memory: 5Mi
+      priorityClassName: high-priority-class
+            

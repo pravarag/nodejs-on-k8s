@@ -1,0 +1,45 @@
+# Default values for nodejs-chart.
+# Declare variables to be passed into your templates.
+
+replicaCount: 10
+
+image:
+  repository: pravarag/nodejs-test
+  # repository: 331286842888.dkr.ecr.us-east-1.amazonaws.com/nodejs-test
+  tag: latest
+  pullPolicy: IfNotPresent
+
+
+service:
+  type: LoadBalancer
+  port: 3000
+  targetPort: 3000
+
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 500Mi
+  requests:
+    cpu: 5m
+    memory: 5Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+priorityClassDefault:
+  enabled: true
+  name: high-priority
+  value: 1200000
+
+
+controller:
+  autoscaling:
+    enabled: true
+    minReplicas: 7
+    maxReplicas: 10
+    averageCPUUtilization: 50
+    averageMemoryUtilization: 60

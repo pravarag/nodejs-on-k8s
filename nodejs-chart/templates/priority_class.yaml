@@ -1,0 +1,9 @@
+{{- if .Values.priorityClassDefault.enabled }}
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: {{ .Values.priorityClassDefault.name }}
+value: {{ .Values.priorityClassDefault.value }}
+globalDefault: false
+description: "This priority class is for nodejs deployment pods"
+{{- end }}
